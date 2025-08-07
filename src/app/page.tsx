@@ -1,103 +1,129 @@
-import Image from "next/image";
+'use client'
+
+import { InfiniteScroll } from '@/components/base/InfinitScroll'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+
+import {
+  BookmarkPlus,
+  ChevronRight,
+  GalleryHorizontal,
+  Play,
+  Text,
+} from 'lucide-react'
+import { useState } from 'react'
+import { toast } from 'sonner'
 
 export default function Home() {
+  const [index, setIndex] = useState(0)
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="p-5">
+      <section className="p-20 flex flex-col gap-3 items-center justify-center text-center w-4xl min-h-[70vh] mx-auto">
+        <h1 className="text-5xl">بِسْمِ ٱللَّٰهِ</h1>
+        <div>
+          <h2 className="text-2xl">
+            Discover the 99 Beautiful Names of Allah ﷻ —{' '}
+          </h2>
+          with meaning, reflection, and purpose. Dive deeper into divine
+          attributes with a modern, guided experience. From Ar-Rahman (The Most
+          Merciful) to As-Sabur (The Most Patient), each Name offers a path to
+          connection, healing, and self-growth. Recite. Reflect. Ask. 🌙 Live
+          with intention. Whether you're on a quest to memorize, understand, or
+          just feel closer to your Creator — this space is built for you.
+          <br />
+          <br />
+          <q>🕋 Modern design. Timeless wisdom. Noor in every click.</q>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="flex items-center mt-3">
+          <Button variant="default" className="w-xs">
+            Explore more Names
+            <ChevronRight className="mt-1" />
+          </Button>
+        </div>
+      </section>
+      <section className="flex flex-col items-center justify-center w-full">
+        <Card className="w-full md:w-2xl gap-1.5 h-[21rem]">
+          <CardHeader>
+            <CardTitle>
+              <GalleryHorizontal size={19} />
+            </CardTitle>
+            <CardAction>
+              <Button
+                variant="default"
+                size="sm"
+                onClick={() => {
+                  toast.warning('The card has been bookmarked!', {
+                    closeButton: true,
+                    position: 'top-center',
+                  })
+                }}
+              >
+                Save
+                <BookmarkPlus />
+              </Button>
+            </CardAction>
+          </CardHeader>
+          <CardContent className="h-full w-full flex flex-col gap-2 items-center justify-center">
+            <h1 className="text-5xl">ٱلْرَّحِيمُ</h1>
+            <h3 className="text-2xl">Ar-Raḥīm </h3>
+            <p className="text-sm">(The Most Merciful)</p>
+          </CardContent>
+          <CardFooter className="mx-auto space-x-3">
+            <Button variant="ghost">
+              More about Ar-Rahim
+              <Text />
+            </Button>
+            <Button variant="secondary">
+              Play
+              <Play />
+            </Button>
+          </CardFooter>
+        </Card>
+        <div className="flex items-center gap-2 mt-5">
+          {[...Array(10).keys()].map((i) => (
+            <span
+              key={i}
+              onClick={() => setIndex(i)}
+              className={`p-1 w-3.5  h-3.5 bg-gray-300 transition-all  duration-300 cursor-pointer  ${
+                index === i
+                  ? 'rotate-45 h-4 w-4 animate-spin rounded-xs'
+                  : 'rounded-sm'
+              }`}
+            />
+          ))}
+        </div>
+      </section>
+      <section className="mt-21">
+        <InfiniteScroll />
+      </section>
+      <section className="p-20 flex flex-col gap-3 items-center justify-center text-center w-4xl min-h-[70vh] mx-auto">
+        <h1 className="text-4xl">Why Bismillah?</h1>
+        <p className="text-md font-light mb-5">
+          The 99 Names of Allah aren’t just beautiful — they’re a spiritual
+          blueprint. Learn their meanings, reflect on their significance, and
+          incorporate them into your daily life. Every Name holds a divine
+          secret — a door to understanding Allah’s mercy, justice, power, and
+          wisdom. In a world full of chaos, the Names are anchors. They’re not
+          just for memorization — they’re for transformation.
+          <br />
+          <br />
+          <strong className="text-lg">
+            ✨ Speak them. Live them. Let them shape your heart.{' '}
+          </strong>
+          <br />
+          <br />
+          Whether you're seeking peace, strength, or guidance — there's a Name
+          for that. This isn’t just learning... it’s a journey of becoming.
+        </p>
+        <Button variant="ghost">More about me Bismillah</Button>
+      </section>
     </div>
-  );
+  )
 }
