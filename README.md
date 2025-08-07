@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+```
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<h1 align='center'>Bismillah</h1>
+<p align='center'>
+Bismillah is a modern Islamic web app designed to help you explore, memorize, and reflect on the 99 Beautiful Names of Allah ﷻ. Each name comes with meanings, benefits, and Qur'anic references, presented in a clean, minimal, and spiritually uplifting interface.
+<br/>
+✨ Whether you're seeking knowledge, comfort, or a closer connection to your Creator — Bismillah offers a guided, peaceful experience rooted in divine wisdom.
+</p>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Inspiration
+```
+>- Bismillah is inspired by a desire to connect hearts with the Names of Allah in a tech-native way.
+```
+## Features
 
-## Learn More
+```tsx
 
-To learn more about Next.js, take a look at the following resources:
+-|*||- Modern, Clean and User friendly ui
+-|*||- Allah all names with there meaning and some more information
+-|*||- Play Voice for each names
+-|*||- Animated loading page 
+-|*||- Bookmark your 💖 Favorites names
+    -|[+]|-   
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Coming Features
 
-## Deploy on Vercel
+```tsx
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+ ## (in-sa-Allah)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    -|[+]|- Ai Chatbot to ask question about related topic on the page  
+    -|[+]|- More details about Allah names  
+    -|[+]|-   
+
+```
+
+## Tech
+
+```bash
+    -|N|- NextJs - {Learning}
+    -|N|- Shadcn.ui - {Learning}
+    -|N|- Lucide_icons - {Learning}
+    -|[+]|- Coming soon..
+
+```
+
+## Local run
+```bash
+## 1st <copy> the repo url and clone it
+
+>- git clone https://github.com/dev-sajjadhosan/bismillah.git
+```
+
+```bash
+## after that go to inside the folder
+
+>- cd bismillah
+
+## then install all Npm pkgs
+
+>- npm install
+
+## last - run the project
+
+>- npm run dev
+
+```
+
+## Contribute 
+
+```tsx
+>- >- If you want to contribute or update something on this project Please, first tell me
+
+-> devsajjadhosan@gmail.com <-.
+
+-> -> -> Don't do any change this project without Permission
+
+```
+
+## Feedback
+
+```html
+    #>- want to say something or suggest or { Create a project Together } ? Feel free to reach me
+
+    [G] >- devsajjadhosan@gmail.com
+    [L] >- https://www.linkedin.com/in/devsajjadhosan
+
+```
