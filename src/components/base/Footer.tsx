@@ -1,12 +1,12 @@
 'use client'
 
 import TooltipBtn from '@/components/base/TooltipBtn'
-import { Facebook, Github, Instagram, Linkedin, Twitter } from 'lucide-react'
+import { Facebook, Github, Instagram, Linkedin } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="border-t py-10 text-white">
+    <footer className="border-t py-15 text-white mt-27">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           {/* Logo + Desc + Socials */}
@@ -51,7 +51,7 @@ export default function Footer() {
           {/* Links Grid */}
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
             <div>
-              <h3 className="text-sm font-medium text-gray-900">Pages</h3>
+              <h3 className="text-sm font-medium text-gray-500">Pages</h3>
               <ul className="mt-4 space-y-2 text-sm">
                 <li>
                   <Link href="#" className="hover:underline">
@@ -76,7 +76,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-medium text-gray-900">Company</h3>
+              <h3 className="text-sm font-medium text-gray-500">Company</h3>
               <ul className="mt-4 space-y-2 text-sm">
                 <li>
                   <Link href="#" className="hover:underline">

@@ -12,7 +12,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { Heart, MessageSquareDot, Settings } from 'lucide-react'
+import { Heart, MessageSquareDot } from 'lucide-react'
 
 import Link from 'next/link'
 

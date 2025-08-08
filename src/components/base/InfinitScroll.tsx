@@ -1,16 +1,10 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 import TooltipBtn from '@/components/base/TooltipBtn'
+import { toast } from 'sonner'
 
 export function InfiniteScroll() {
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -77,6 +71,10 @@ export function InfiniteScroll() {
             <Card
               key={`${item.id}-${i}`}
               className="w-[15rem] h-[5rem] border-0 flex-shrink-0 text-center hover:scale-105 transition-all duration-300"
+              onClick={() => toast.warning('Development mode.',{
+                position: 'top-left',
+                description: 'We are currently working on it. SO, Please wait we will coming with some new Recipes.'
+              })}
             >
               <CardContent>
                 <h2 className="font-light text-lg">{item.title}</h2>
