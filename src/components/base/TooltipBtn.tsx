@@ -12,6 +12,8 @@ export default function TooltipBtn({
   icon,
   title,
   action,
+  side,
+  align,
   variant,
   disabled,
 }: {
@@ -19,6 +21,8 @@ export default function TooltipBtn({
   title: string
   action?: () => void
   disabled?: boolean
+  side?: 'bottom' | 'left' | 'right' | 'top'
+  align?: 'center' | 'end' | 'start'
   variant?:
     | 'default'
     | 'destructive'
@@ -40,7 +44,7 @@ export default function TooltipBtn({
             {icon}
           </Button>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent side={side} align={align}>
           <p>{title}</p>
         </TooltipContent>
       </Tooltip>

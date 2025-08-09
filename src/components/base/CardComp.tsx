@@ -50,7 +50,7 @@ export default function CardComponent({ l }: { l: NamesDoc }) {
                   position: 'top-center',
                 })
               }}
-              variant="default"
+              variant="outline"
               size="sm"
             >
               Save

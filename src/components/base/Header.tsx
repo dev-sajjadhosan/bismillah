@@ -1,5 +1,6 @@
 'use client'
 
+import Language from '@/components/base/Language'
 import { Button } from '@/components/ui/button'
 import {
   NavigationMenu,
@@ -44,20 +45,25 @@ export function Header() {
         <NavigationMenu>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost"><Heart /></Button>
+              <Button variant="ghost">
+                <Heart />
+              </Button>
             </TooltipTrigger>
-            <TooltipContent side='bottom' align='center'>
+            <TooltipContent side="bottom" align="center">
               <p>Bookmark</p>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost"><MessageSquareDot /></Button>
+              <Button variant="ghost">
+                <MessageSquareDot />
+              </Button>
             </TooltipTrigger>
-            <TooltipContent side='bottom' align='center'>
+            <TooltipContent side="bottom" align="center">
               <p>Feedback</p>
             </TooltipContent>
           </Tooltip>
+          <Language />
         </NavigationMenu>
       </div>
     </header>

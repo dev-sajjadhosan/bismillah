@@ -1,9 +1,6 @@
 'use client'
 
 import SlidingPagination from '@/components/base/DynamicPagination'
-import { InfiniteScroll } from '@/components/base/InfinitScroll'
-import Subscribe from '@/components/base/Subscribe'
-import TooltipBtn from '@/components/base/TooltipBtn'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -13,21 +10,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Separator } from '@/components/ui/separator'
 import { Switch } from '@/components/ui/switch'
 import { NamesDoc } from '@/lib/getallnames'
 
-import {
-  BookmarkPlus,
-  ChevronLeft,
-  ChevronRight,
-  GalleryHorizontal,
-  Play,
-  Send,
-  Text,
-} from 'lucide-react'
+import { BookmarkPlus, GalleryHorizontal, Play, Text } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
