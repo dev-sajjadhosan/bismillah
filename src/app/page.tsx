@@ -1,73 +1,16 @@
-'use client'
-
 import { InfiniteScroll } from '@/components/base/InfinitScroll'
+import SingleCard from '@/components/base/SingleCard'
+import Subscribe from '@/components/base/Subscribe'
+import TooltipBtn from '@/components/base/TooltipBtn'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Separator } from '@/components/ui/separator'
+import { Card, CardContent } from '@/components/ui/card'
 
-import {
-  BookmarkPlus,
-  ChevronRight,
-  GalleryHorizontal,
-  Play,
-  Send,
-  Text,
-} from 'lucide-react'
-import { useState } from 'react'
-import { toast } from 'sonner'
+import { getAllNames } from '@/lib/getallnames'
 
-export default function Home() {
-  const [index, setIndex] = useState(0)
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-  const [status, setStatus] = useState(false)
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus(true)
-
-    const form = e.target as HTMLFormElement
-    const email = (form.elements.namedItem('subscribe') as HTMLInputElement)
-      ?.value
-
-    console.log(email)
-
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
-    })
-
-    const data = await res?.json()
-    if (data?.success) {
-      setStatus(false)
-      return toast.success('Subscription Successfully!', {
-        description: data?.message,
-        position: 'top-left',
-        duration: 3500,
-        style:{
-          background: 'darkgreen'
-        }
-      })
-    } else {
-      return toast.error('Subscription Failed!', {
-        description: data?.error,
-        position: 'top-left',
-        duration: 3500,
-        style: {
-          background: 'darkred'
-        }
-      })
-    }
-  }
-
+export default async function Home() {
+  const names = await getAllNames()
   return (
     <div className="p-5">
       <section className="p-20 flex flex-col gap-3 items-center justify-center text-center w-4xl min-h-[70vh] mx-auto">
@@ -94,60 +37,9 @@ export default function Home() {
           </Button>
         </div>
       </section>
-      <section className="flex flex-col items-center justify-center w-full">
-        <Card className="w-full md:w-2xl gap-1.5 h-[21rem]">
-          <CardHeader>
-            <CardTitle>
-              <GalleryHorizontal size={19} />
-            </CardTitle>
-            <CardAction>
-              <Button
-                variant="default"
-                size="sm"
-                onClick={() => {
-                  toast.warning('The card has been bookmarked!', {
-                    closeButton: true,
-                    position: 'top-center',
-                  })
-                }}
-              >
-                Save
-                <BookmarkPlus />
-              </Button>
-            </CardAction>
-          </CardHeader>
-          <CardContent className="h-full w-full flex flex-col gap-2 items-center justify-center">
-            <h1 className="text-5xl">ٱلْرَّحِيمُ</h1>
-            <h3 className="text-2xl">Ar-Raḥīm </h3>
-            <p className="text-sm">(The Most Merciful)</p>
-          </CardContent>
-          <CardFooter className="mx-auto space-x-3">
-            <Button variant="ghost">
-              More about Ar-Rahim
-              <Text />
-            </Button>
-            <Button variant="secondary">
-              Play
-              <Play />
-            </Button>
-          </CardFooter>
-        </Card>
-        <div className="flex items-center gap-2 mt-5">
-          {[...Array(10).keys()].map((i) => (
-            <span
-              key={i}
-              onClick={() => setIndex(i)}
-              className={`p-1 w-3.5  h-3.5 bg-gray-300 transition-all  duration-300 cursor-pointer  ${
-                index === i
-                  ? 'rotate-45 h-4 w-4 animate-spin rounded-xs'
-                  : 'rounded-sm'
-              }`}
-            />
-          ))}
-        </div>
-      </section>
+      <SingleCard />
       <section className="mt-21">
-        <InfiniteScroll />
+        <InfiniteScroll names={names} />
       </section>
       <section className="p-20 flex flex-col gap-3 items-center justify-center text-center w-4xl min-h-[70vh] mx-auto">
         <h1 className="text-4xl">Why Bismillah?</h1>
@@ -171,37 +63,28 @@ export default function Home() {
         </p>
         <Button variant="ghost">More about me Bismillah</Button>
       </section>
-      <section className="mt-21">
-        <Card className="h-[17rem] flex flex-row items-center justify-around">
+      <Subscribe />
+      <section className="mt-31">
+        <Card className="w-xl h-[15rem] p-7 mx-auto flex-row items-center justify-between">
+          <TooltipBtn
+            icon={<ChevronLeft className="h-5 w-5" />}
+            title="Prev"
+            variant="ghost"
+            // action={() => scroll('left')}
+          />
+
           <CardContent>
-            <h1 className="text-7xl">بِسْمِ ٱللَّٰهِ</h1>
+            <h3 className="italic text-lg">
+              <q>Indeed, with hardship comes ease.</q>
+            </h3>
+            <p className="text-xs">— Surah Ash-Sharh (94:6)</p>
           </CardContent>
-          <Separator orientation="vertical" />
-          <CardContent className="space-y-3">
-            <h3 className="text-gray-500">Want to be update with me ?</h3>
-            <form
-              className="flex items-center gap-2"
-              onSubmit={handleSubscribe}
-            >
-              <Input
-                type="email"
-                name="subscribe"
-                placeholder="your@email.com"
-                className="w-xs"
-                required
-              />
-              <Button type="submit" variant="outline">
-                {status ? (
-                  <>Subscribing</>
-                ) : (
-                  <>
-                    Subscribe
-                    <Send />
-                  </>
-                )}
-              </Button>
-            </form>
-          </CardContent>
+          <TooltipBtn
+            icon={<ChevronRight className="h-5 w-5" />}
+            title="Next"
+            variant="secondary"
+            // action={() => scroll('right')}
+          />
         </Card>
       </section>
     </div>
