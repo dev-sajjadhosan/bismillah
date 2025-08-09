@@ -10,11 +10,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Switch } from '@/components/ui/switch'
 import { NamesDoc } from '@/lib/getallnames'
 
-import { BookmarkPlus, GalleryHorizontal, Play, Text } from 'lucide-react'
+import { BookmarkPlus, Club, Play, Text } from 'lucide-react'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -35,18 +34,13 @@ export default function SingleCard() {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center w-full">
+      <section className="flex flex-col items-center justify-center w-full mt-21">
         <Card className="w-full md:w-2xl gap-1.5 h-[21rem]">
           <CardHeader>
             <CardTitle>
-              <GalleryHorizontal size={19} />
+              <Club size={19} />
             </CardTitle>
             <CardAction className="flex items-center gap-5">
-              <div className="flex items-center space-x-2">
-                <Label htmlFor="airplane-mode">en</Label>
-                <Switch id="airplane-mode" />
-                <Label htmlFor="airplane-mode">bn</Label>
-              </div>
               <Button
                 variant="default"
                 size="sm"
@@ -68,11 +62,13 @@ export default function SingleCard() {
             <p className="text-sm">{findData?.translation_en}</p>
           </CardContent>
           <CardFooter className="mx-auto space-x-3">
-            <Button variant="ghost">
-              More about {findData?.transliteration}
-              <Text />
-            </Button>
-            <Button variant="secondary">
+            <Link href={`/details/${findData?.transliteration}`}>
+              <Button variant="ghost">
+                More about {findData?.transliteration}
+                <Text />
+              </Button>
+            </Link>
+            <Button variant="secondary" disabled>
               Play
               <Play />
             </Button>

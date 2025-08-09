@@ -1,5 +1,6 @@
 'use client'
 
+import Count from '@/components/base/Count'
 import TooltipBtn from '@/components/base/TooltipBtn'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
@@ -62,15 +63,15 @@ export default function Details() {
             </Button>
           </CardFooter>
         </Card>
-        <div className="flex items-center justify-between mt-15">
-          <div className="w-2/5 h-full">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5 mt-15">
+          <div className="w-full md:w-2/5 h-full">
             <Card className="h-[17rem] w-full items-center justify-center">
               <CardContent>
                 <h1 className="text-5xl">{data?.name_ar}</h1>
               </CardContent>
             </Card>
           </div>
-          <div className="flex flex-col gap-2 w-1/2">
+          <div className="flex flex-col gap-2 w-full md:w-1/2">
             <div className="flex items-center justify-between">
               <h1 className="text-3xl">{data?.transliteration}</h1>
               <div className="flex items-center gap-2.5">
@@ -106,11 +107,9 @@ export default function Details() {
               </span>{' '}
               {data?.dua}
             </p>
-
-            {/* ---------- */}
           </div>
         </div>
-        <div className="mt-11 grid grid-cols-2 gap-3">
+        <div className="mt-11 grid md:grid-cols-2 gap-3">
           <Card className="items-center justify-center">
             <CardContent>
               <Progress value={53} className="w-xs h-1" />
@@ -158,7 +157,7 @@ export default function Details() {
             </CardContent>
           </Card>
         </div>
-        <div className="mt-7 space-y-5 grid grid-cols-2 gap-5 h-full ">
+        <div className="mt-7 space-y-5 grid md:grid-cols-2 gap-5 h-full ">
           <Alert variant="default">
             <Hash />
             <AlertTitle>Recitation Count</AlertTitle>
@@ -178,6 +177,12 @@ export default function Details() {
                 </span>
                 {data?.recitation_count?.reward}
               </p>
+              <div className="w-full mt-3 flex items-center justify-end">
+                <Count
+                  target={Number(data?.recitation_count?.recommended)}
+                  name={data?.transliteration}
+                />
+              </div>
             </AlertDescription>
           </Alert>
           <Alert variant="destructive" className="h-fit">
@@ -196,7 +201,7 @@ export default function Details() {
             </AlertDescription>
           </Alert>
         </div>
-        <div className="mt-3 grid grid-cols-2 gap-5">
+        <div className="mt-3 grid md:grid-cols-2 gap-5">
           <Alert variant="destructive">
             <Hash />
             <AlertTitle>Reflections</AlertTitle>
@@ -218,12 +223,12 @@ export default function Details() {
             </AlertDescription>
           </Alert>
         </div>
-        <div className="mt-9">
+        <div className="mt-19">
           <h3 className="text-lg">Related Names</h3>
-          <div className="flex items-center gap-5 mt-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center gap-5 mt-3">
             {data?.related_names?.map((r, i) => (
               <Link href={`/details/${r}`} key={i}>
-                <Card className="w-xs h-21 items-center justify-center text-primary hover:bg-secondary">
+                <Card className="w-full md:w-xs h-21 items-center justify-center text-primary hover:bg-secondary">
                   <CardContent>
                     <h3 className="text-lg">{r}</h3>
                   </CardContent>

@@ -8,15 +8,16 @@ import { Card, CardContent } from '@/components/ui/card'
 import { getAllNames } from '@/lib/getallnames'
 
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 
 export default async function Home() {
   const names = await getAllNames()
   return (
     <div className="p-5">
-      <section className="p-20 flex flex-col gap-3 items-center justify-center text-center w-4xl min-h-[70vh] mx-auto">
+      <section className="md:p-20 flex flex-col gap-3 items-center justify-center text-center md:w-4xl min-h-[70vh] mx-auto">
         <h1 className="text-5xl">بِسْمِ ٱللَّٰهِ</h1>
-        <div>
-          <h2 className="text-2xl">
+        <div className='text-sm md:text-md text-gray-500'>
+          <h2 className="text-xl md:text-2xl text-white">
             Discover the 99 Beautiful Names of Allah ﷻ —{' '}
           </h2>
           with meaning, reflection, and purpose. Dive deeper into divine
@@ -31,19 +32,21 @@ export default async function Home() {
           <q>🕋 Modern design. Timeless wisdom. Noor in every click.</q>
         </div>
         <div className="flex items-center mt-3">
-          <Button variant="default" className="w-xs">
-            Explore more Names
-            <ChevronRight className="mt-1" />
-          </Button>
+          <Link href='/allnames'>
+            <Button variant="default" className="w-xs">
+              Explore more Names
+              <ChevronRight className="mt-1" />
+            </Button>
+          </Link>
         </div>
       </section>
       <SingleCard />
       <section className="mt-21">
         <InfiniteScroll names={names} />
       </section>
-      <section className="p-20 flex flex-col gap-3 items-center justify-center text-center w-4xl min-h-[70vh] mx-auto">
+      <section className="mt-21 md:p-20 flex flex-col gap-3 items-center justify-center text-center md:w-4xl min-h-[70vh] mx-auto">
         <h1 className="text-4xl">Why Bismillah?</h1>
-        <p className="text-md font-light mb-5">
+        <p className="text-sm md:text-md font-light mb-5">
           The 99 Names of Allah aren’t just beautiful — they’re a spiritual
           blueprint. Learn their meanings, reflect on their significance, and
           incorporate them into your daily life. Every Name holds a divine
@@ -65,7 +68,7 @@ export default async function Home() {
       </section>
       <Subscribe />
       <section className="mt-31">
-        <Card className="w-xl h-[15rem] p-7 mx-auto flex-row items-center justify-between">
+        <Card className="md:w-xl h-[15rem] p-7 mx-auto flex-row items-center justify-between">
           <TooltipBtn
             icon={<ChevronLeft className="h-5 w-5" />}
             title="Prev"

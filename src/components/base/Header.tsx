@@ -1,5 +1,6 @@
 'use client'
 
+import BookmarkDrawer from '@/components/base/BookmarkDrawer'
 import Language from '@/components/base/Language'
 import { Button } from '@/components/ui/button'
 import {
@@ -13,7 +14,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { Heart, MessageSquareDot } from 'lucide-react'
+import { MessageSquareDot } from 'lucide-react'
 
 import Link from 'next/link'
 
@@ -43,18 +44,11 @@ export function Header() {
           </NavigationMenuList>
         </NavigationMenu>
         <NavigationMenu>
+          <>
+            <BookmarkDrawer />
+          </>
           <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="ghost">
-                <Heart />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="bottom" align="center">
-              <p>Bookmark</p>
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
+            <TooltipTrigger>
               <Button variant="ghost">
                 <MessageSquareDot />
               </Button>

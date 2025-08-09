@@ -53,11 +53,17 @@ export default function Subscribe() {
   return (
     <>
       <section className="mt-21">
-        <Card className="h-[17rem] flex flex-row items-center justify-around">
+        <Card className="h-[29rem] md:h-[17rem] flex md:flex-row items-center justify-around">
           <CardContent>
             <h1 className="text-7xl">بِسْمِ ٱللَّٰهِ</h1>
           </CardContent>
-          <Separator orientation="vertical" />
+          <div className="hidden md:inline h-full">
+            <Separator orientation="vertical" />
+          </div>
+          <div className="inline md:hidden w-full p-5">
+            <Separator />
+          </div>
+
           <CardContent className="space-y-3">
             <h3 className="text-gray-500">Want to be update with us?</h3>
             <form

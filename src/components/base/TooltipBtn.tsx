@@ -14,13 +14,15 @@ export default function TooltipBtn({
   action,
   side,
   align,
-  variant,
+  variant = 'default',
   disabled,
+  size = 'icon',
 }: {
   icon: React.ReactNode
   title: string
   action?: () => void
   disabled?: boolean
+  size?: 'icon' | 'default' | 'sm' | 'lg'
   side?: 'bottom' | 'left' | 'right' | 'top'
   align?: 'center' | 'end' | 'start'
   variant?:
@@ -37,8 +39,8 @@ export default function TooltipBtn({
         <TooltipTrigger>
           <Button
             disabled={disabled}
-            variant={variant || 'default'}
-            size="icon"
+            variant={variant}
+            size={size}
             onClick={() => action?.()}
           >
             {icon}

@@ -11,11 +11,12 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { NamesDoc } from '@/lib/getallnames'
-import { LayoutGrid, LayoutList, Rows2 } from 'lucide-react'
+import { LayoutGrid, LayoutList } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 export default function Names({ data }: { data: NamesDoc[] }) {
   const [search, setSearch] = useState('')
+  const [isGrid, setIsGrid] = useState(true)
 
   const normalize = (str: string) => {
     return str
@@ -40,7 +41,7 @@ export default function Names({ data }: { data: NamesDoc[] }) {
 
   return (
     <>
-      <div className="my-15 flex items-center justify-between w-full">
+      <div className="my-15 flex flex-col md:flex-row gap-9 items-center justify-between w-full">
         <Input
           type="search"
           placeholder="Search name here"
@@ -49,12 +50,21 @@ export default function Names({ data }: { data: NamesDoc[] }) {
         />
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
-            <TooltipBtn title="Grid" icon={<LayoutGrid />} variant="ghost" />
-            <TooltipBtn title="List" icon={<LayoutList />} variant="ghost" />
-            <TooltipBtn title="Columns" icon={<Rows2 />} variant="secondary" />
+            <TooltipBtn
+              title="Grid"
+              icon={<LayoutGrid />}
+              variant={isGrid ? 'default' : 'ghost'} // Active when isGrid true
+              action={() => setIsGrid(true)}
+            />
+            <TooltipBtn
+              title="List"
+              icon={<LayoutList />}
+              variant={!isGrid ? 'default' : 'ghost'} // Active when isGrid false
+              action={() => setIsGrid(false)}
+            />
           </div>
           <Select>
-            <SelectTrigger className="w-[100px]">
+            <SelectTrigger className="w-[155px]">
               <SelectValue placeholder="Filter by" />
             </SelectTrigger>
             <SelectContent>
@@ -65,7 +75,7 @@ export default function Names({ data }: { data: NamesDoc[] }) {
             </SelectContent>
           </Select>
           <Select>
-            <SelectTrigger className="w-[130px]">
+            <SelectTrigger className="w-[175px]">
               <SelectValue placeholder="Categories" />
             </SelectTrigger>
             <SelectContent>
@@ -78,9 +88,13 @@ export default function Names({ data }: { data: NamesDoc[] }) {
           </Select>
         </div>
       </div>
-      <div className="mt-17 grid grid-cols-2 gap-5 w-full">
+      <div
+        className={`mt-17 grid ${
+          isGrid ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'
+        }  gap-5 w-full`}
+      >
         {filterData.map((l, i) => (
-          <CardComponent key={i} l={l} />
+          <CardComponent key={i} l={l} isGrid={isGrid} />
         ))}
       </div>
     </>
