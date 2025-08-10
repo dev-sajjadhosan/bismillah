@@ -1,5 +1,6 @@
 'use client'
 
+import { ShareModal } from '@/components/base/ShareModal'
 import TooltipBtn from '@/components/base/TooltipBtn'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -11,9 +12,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { useBookmarks } from '@/hooks/useBookmark'
 
 import { NamesDoc } from '@/lib/getallnames'
-import { BookmarkPlus, Forward, Heart, Play, Text } from 'lucide-react'
+import { Bookmark, BookmarkPlus, Heart, Play, Text } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { toast } from 'sonner'
@@ -26,6 +28,11 @@ export default function CardComponent({
   isGrid?: boolean
 }) {
   const [isEng] = useState(true)
+  const { addBookmark, isBookmark, removeBookmark } = useBookmarks()
+
+  const origin = typeof window !== 'undefined' ? window.location.origin : ''
+  const fullUrl = `${origin}/details/${l.transliteration}`
+
   return (
     <>
       {!isGrid ? (
@@ -81,11 +88,7 @@ export default function CardComponent({
             </div>
             <div className="space-x-3">
               <TooltipBtn title="Love" icon={<Heart />} variant="secondary" />
-              <TooltipBtn
-                title="Share"
-                icon={<Forward />}
-                variant="secondary"
-              />
+              <ShareModal link={fullUrl} />
             </div>
           </CardFooter>
         </Card>
@@ -102,19 +105,45 @@ export default function CardComponent({
               </Badge>
             </CardTitle>
             <CardAction className="flex items-center gap-5">
-              <Button
-                onClick={() => {
-                  toast.warning('The card has been bookmarked!', {
-                    closeButton: true,
-                    position: 'top-center',
-                  })
-                }}
-                variant="secondary"
-                size="sm"
-              >
-                Save
-                <BookmarkPlus />
-              </Button>
+              {isBookmark(l?.id) ? (
+                <Button
+                  onClick={() => {
+                    const data = {
+                      id: l?.id,
+                      name_ar: l?.name_ar,
+                      transliteration: l?.transliteration,
+                      translation_en: l?.translation_en,
+                      description: l?.description,
+                    }
+
+                    removeBookmark(data?.id)
+                  }}
+                  variant="secondary"
+                  size="sm"
+                >
+                  Saved
+                  <Bookmark />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    const data = {
+                      id: l?.id,
+                      name_ar: l?.name_ar,
+                      transliteration: l?.transliteration,
+                      translation_en: l?.translation_en,
+                      description: l?.description,
+                    }
+
+                    addBookmark(data)
+                  }}
+                  variant="secondary"
+                  size="sm"
+                >
+                  Save
+                  <BookmarkPlus />
+                </Button>
+              )}
             </CardAction>
           </CardHeader>
           <CardContent className="h-full w-full flex flex-col gap-2 items-center justify-center">
@@ -140,11 +169,7 @@ export default function CardComponent({
             </div>
             <div className="space-x-3">
               <TooltipBtn title="Love" icon={<Heart />} variant="secondary" />
-              <TooltipBtn
-                title="Share"
-                icon={<Forward />}
-                variant="secondary"
-              />
+              <ShareModal link={fullUrl} />
             </div>
           </CardFooter>
         </Card>

@@ -1,20 +1,14 @@
 'use client'
 
 import BookmarkDrawer from '@/components/base/BookmarkDrawer'
+import FeedbackModal from '@/components/base/Feedback'
 import Language from '@/components/base/Language'
-import { Button } from '@/components/ui/button'
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuLink,
 } from '@/components/ui/navigation-menu'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
-import { MessageSquareDot } from 'lucide-react'
 
 import Link from 'next/link'
 
@@ -47,16 +41,9 @@ export function Header() {
           <>
             <BookmarkDrawer />
           </>
-          <Tooltip>
-            <TooltipTrigger>
-              <Button variant="ghost">
-                <MessageSquareDot />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="bottom" align="center">
-              <p>Feedback</p>
-            </TooltipContent>
-          </Tooltip>
+          <>
+            <FeedbackModal />
+          </>
           <Language />
         </NavigationMenu>
       </div>

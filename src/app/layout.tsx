@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/ui/theme-provider'
 import { Header } from '@/components/base/Header'
 import { Toaster } from '@/components/ui/sonner'
 import Footer from '@/components/base/Footer'
+import { BookmarkProvider } from '@/context/BookmarkContext'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,19 +32,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Toaster />
-        <Header />
-        <main>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </main>
-      <Footer />
+        <BookmarkProvider>
+          <Toaster richColors />
+          <Header />
+          <main>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </main>
+          <Footer />
+        </BookmarkProvider>
       </body>
     </html>
   )
